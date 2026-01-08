@@ -110,23 +110,7 @@ Per decisioni finanziarie importanti, consultare professionisti qualificati.
 
 MIT License - Libero utilizzo con attribuzione
 
-## 👤 Autore
-
-Sviluppato da [Studio Moccia](https://www.studiomoccia.it) - Commercialista in Rende (CS)
-
-Specializzazioni:
-- Fiscalità startup e PMI innovative
-- Tax planning e incentivi R&D
-- Consulenza finanziaria d'impresa
-
-## 🤝 Contributi
-
-Contributi, segnalazioni bug e richieste funzionalità sono benvenuti!
-
-## 📧 Contatti
-
-Per informazioni: [info@studiomoccia.it](mailto:info@studiomoccia.it)
-
+di Matteo Moccia e Marco Liera
 ---
 
 **Versione**: 1.0.0  
