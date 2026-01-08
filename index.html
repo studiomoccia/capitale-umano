@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcolatore Capitale Umano 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .intro h2 {
+            font-size: 18px;
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+        
+        .intro p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-label {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .input-note {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #fffbf0;
+        }
+        
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+        
+        .result-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .result-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .result-value {
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .result-subtitle {
+            font-size: 16px;
+            opacity: 0.85;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .info-box h3 {
+            font-size: 15px;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.9;
+        }
+        
+        .info-box li {
+            margin-bottom: 6px;
+        }
+        
+        .info-box li:before {
+            content: "→ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 12px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .result-value {
+                font-size: 38px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Calcolatore Capitale Umano</h1>
+            <p>Stima del valore attuale del capitale umano secondo il metodo finanziario attuariale</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>Come funziona?</h2>
+                <p><strong>Il capitale umano</strong> rappresenta il valore attuale dei redditi futuri che una persona genererà durante la propria vita lavorativa.</p>
+                <p>Questo strumento calcola tale valore utilizzando la formula di attualizzazione dei flussi finanziari, tenendo conto del rendimento di mercato (BTP indicizzato all'inflazione) e del livello di sicurezza dell'impiego.</p>
+            </div>
+            
+            <!-- Sezione Dati di Mercato -->
+            <div class="section">
+                <div class="section-title">📈 Dati di Mercato</div>
+                <div class="input-group">
+                    <label class="input-label" for="tasso">
+                        Rendimento effettivo BTPei scadenza 2056 (%)
+                    </label>
+                    <input type="number" id="tasso" value="2.58" step="0.01" min="0" max="20">
+                    <span class="input-note">Tasso risk-free di riferimento. Valore attuale: 2,58%</span>
+                </div>
+            </div>
+            
+            <!-- Sezione Dati Personali -->
+            <div class="section">
+                <div class="section-title">💼 Dati Personali</div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="reddito">
+                        Reddito annuale netto (€)
+                    </label>
+                    <input type="number" id="reddito" value="60000" step="1000" min="0" max="10000000">
+                    <span class="input-note">Al netto di tasse e contributi. Crescita attesa pari all'inflazione</span>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="anni">
+                        Anni di lavoro restanti fino al pensionamento
+                    </label>
+                    <input type="number" id="anni" value="18" step="1" min="1" max="50">
+                    <span class="input-note">Orizzonte temporale per il calcolo dell'attualizzazione</span>
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label" for="sicurezza">
+                        Livello di sicurezza del lavoro
+                    </label>
+                    <select id="sicurezza">
+                        <option value="eccellente">Eccellente (impiego pubblico o altamente garantito)</option>
+                        <option value="media" selected>Media (impiego stabile nel settore privato)</option>
+                        <option value="modesta">Modesta (impiego precario o freelance)</option>
+                    </select>
+                    <span class="input-note">Questo parametro influenza il premio al rischio applicato al tasso di attualizzazione</span>
+                </div>
+            </div>
+            
+            <!-- Risultato -->
+            <div class="result-box">
+                <div class="result-label">Valore stimato ad oggi</div>
+                <div class="result-value" id="risultato">€ 0</div>
+                <div class="result-subtitle">Capitale Umano</div>
+            </div>
+            
+            <!-- Informazioni metodologia -->
+            <div class="info-box">
+                <h3>📋 Metodologia di Calcolo</h3>
+                <ul>
+                    <li><strong>Formula:</strong> Valore Attuale = Reddito × [(1 - (1 / (1+r)^n)) / r]</li>
+                    <li><strong>Tasso eccellente:</strong> BTPei × 1,0 (rischio minimo)</li>
+                    <li><strong>Tasso medio:</strong> BTPei × 1,5 (rischio moderato)</li>
+                    <li><strong>Tasso modesto:</strong> BTPei × 2,0 (rischio elevato)</li>
+                    <li><strong>Ipotesi:</strong> Crescita del reddito pari all'inflazione (già incorporata nel BTPei)</li>
+                </ul>
+            </div>
+            
+            <div class="footer">
+                Strumento sviluppato per finalità illustrative e formative<br>
+                © 2026 - Calcolatore Capitale Umano
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Funzione principale di calcolo - replica esatta della formula Excel
+        function calcolaCapitaleUmano() {
+            // Recupero valori input (corrispondono alle celle Excel)
+            const tassoBase = parseFloat(document.getElementById('tasso').value) || 0;      // C6
+            const reddito = parseFloat(document.getElementById('reddito').value) || 0;      // C12
+            const anni = parseInt(document.getElementById('anni').value) || 0;              // C16
+            const sicurezza = document.getElementById('sicurezza').value;                    // C19
+            
+            // Calcolo tasso attualizzazione (formula H19)
+            // =IF(C19="modesta",C6*2,"")&IF(C19="media",C6*1.5,"")&IF(C19="eccellente",C6,"")
+            let moltiplicatore;
+            switch(sicurezza) {
+                case 'eccellente':
+                    moltiplicatore = 1.0;
+                    break;
+                case 'media':
+                    moltiplicatore = 1.5;
+                    break;
+                case 'modesta':
+                    moltiplicatore = 2.0;
+                    break;
+                default:
+                    moltiplicatore = 1.5;
+            }
+            
+            const tassoAttualizzazione = tassoBase * moltiplicatore;  // H19
+            
+            // Formula Excel C24: =C12*((1-(1/POWER(((H19/100)+1), C16)))/(H19/100))
+            // Tradotta in JavaScript:
+            const tassoDecimale = tassoAttualizzazione / 100;
+            
+            if (tassoDecimale > 0 && anni > 0 && reddito > 0) {
+                // POWER((H19/100)+1, C16) = Math.pow((tassoDecimale + 1), anni)
+                const fattore = Math.pow((tassoDecimale + 1), anni);
+                
+                // 1 / POWER(...)
+                const inversoFattore = 1 / fattore;
+                
+                // 1 - (1/POWER(...))
+                const numeratore = 1 - inversoFattore;
+                
+                // (1-(1/POWER(...))) / (H19/100)
+                const coefficiente = numeratore / tassoDecimale;
+                
+                // C12 * coefficiente
+                const capitaleUmano = reddito * coefficiente;
+                
+                // Formattazione output con separatore migliaia italiano
+                const risultatoFormattato = Math.round(capitaleUmano).toLocaleString('it-IT');
+                document.getElementById('risultato').textContent = '€ ' + risultatoFormattato;
+            } else {
+                document.getElementById('risultato').textContent = '€ 0';
+            }
+        }
+        
+        // Event listeners per calcolo real-time
+        const inputFields = ['tasso', 'reddito', 'anni', 'sicurezza'];
+        inputFields.forEach(fieldId => {
+            const element = document.getElementById(fieldId);
+            const eventType = fieldId === 'sicurezza' ? 'change' : 'input';
+            element.addEventListener(eventType, calcolaCapitaleUmano);
+        });
+        
+        // Calcolo iniziale al caricamento pagina
+        window.addEventListener('DOMContentLoaded', calcolaCapitaleUmano);
+    </script>
+</body>
+</html>
