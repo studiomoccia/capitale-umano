@@ -13,7 +13,7 @@ Il **capitale umano** rappresenta il valore attuale dei redditi futuri che una p
 
 ## 🚀 Demo Online
 
-**[→ Prova il calcolatore](https://tuousername.github.io/capitale-umano)**
+**[→ Prova il calcolatore](https://github.com/mmoccia-star/capitale-umano))**
 
 ## 📋 Caratteristiche
 
